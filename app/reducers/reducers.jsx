@@ -96,7 +96,9 @@ export var storageReducer = (state = {
 export var tripsReducer = (state = [], action) => {
   switch (action.type) {
     case 'GET_TRIPS':
-      return action.trips;
+      return [
+        ...action.trips
+        ];
     case 'CLEAR_TRIPS':
       return [];
     default:

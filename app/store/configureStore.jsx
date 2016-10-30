@@ -1,14 +1,15 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import { restaurantsReducer, ratingsReducer, storageReducer, filtersReducer } from 'reducers'
+import { tripsReducer, restaurantsReducer, ratingsReducer, storageReducer, filtersReducer } from 'reducers'
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     storage: storageReducer,
     restaurants:  restaurantsReducer,
     ratings: ratingsReducer,
-    filter: filtersReducer
+    filter: filtersReducer,
+    trips: tripsReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

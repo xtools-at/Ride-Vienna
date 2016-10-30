@@ -17,9 +17,11 @@ export var RouteForm = React.createClass({
 
 		return (
 				<form>
-					<button className="waves-effect btn" onClick={this.onRouteSubmit}>
-						<i className="material-icons left">subway</i>Do it!
-					</button>
+					<div className="center mb">
+						<button className="waves-effect btn btn-large" onClick={this.onRouteSubmit}>
+							<i className="material-icons left">subway</i>Do it!
+						</button>
+					</div>
 				</form>
 		)
 	}
