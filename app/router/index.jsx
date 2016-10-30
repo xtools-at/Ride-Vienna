@@ -1,13 +1,12 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
-import Main from 'Main';
-import Login from 'Login';
-
 import firebase from 'app/firebase/';
 
-import RestaurantList from 'RestaurantList';
-import RestaurantDetail from 'RestaurantDetail';
+import Main from 'Main';
+import Login from 'Login';
+import Dashboard from 'Dashboard';
+
 
 var requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
@@ -31,7 +30,6 @@ export default (
       <IndexRoute component={Dashboard}/>
       <Route path="login" component={Login} />
       <Route path="register" component={Login} />
-      <Route path="restaurant" component={RestaurantDetail} />
     </Route>
   </Router>
 );
