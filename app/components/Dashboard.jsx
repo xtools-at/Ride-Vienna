@@ -18,7 +18,7 @@ export var Dashboard = React.createClass({
 						<p className="center">Travel Vienna by Subway the easy way</p>
 						<RouteForm />
 					</section>
-					<section className="card-panel col s12 m10 offset-m1 l4 offset-l1">
+					<section className="col s12 m10 offset-m1 l4 offset-l1">
 						Recent Trips
 					</section>
 				</div>

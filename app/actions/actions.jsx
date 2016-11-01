@@ -272,7 +272,7 @@ export var setFilters = (filters, sortBy) => {
 
 //Request Route
 export var requestRoute = (from, to, date, time, arrOrDep) => {
-	//from, to: Station Name Strings
+	//from, to: Station ID Strings
 	//date: String, format YYYYMMDD
 	//time: String, format HH:MM
 	//arrOrDep: "arr" | "dep"
@@ -368,6 +368,7 @@ export var requestRoute = (from, to, date, time, arrOrDep) => {
 						type: 'GET_TRIPS',
 						trips: tripsArray
 					});
+					hashHistory.push('/trips');
 
 				} catch (e){
 					console.log(e);

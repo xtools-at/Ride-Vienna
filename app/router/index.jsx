@@ -6,6 +6,7 @@ import firebase from 'app/firebase/';
 import Main from 'Main';
 import Login from 'Login';
 import Dashboard from 'Dashboard';
+import TripsList from 'TripsList';
 
 
 var requireLogin = (nextState, replace, next) => {
@@ -28,7 +29,7 @@ export default (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={Dashboard}/>
-      <Route path="login" component={Login} />
+      <Route path="trips" component={TripsList} />
       <Route path="register" component={Login} />
     </Route>
   </Router>
