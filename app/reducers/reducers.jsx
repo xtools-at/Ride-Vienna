@@ -105,3 +105,14 @@ export var tripsReducer = (state = [], action) => {
       return state;
   }
 };
+
+export var lastRoutesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_LAST_ROUTES':
+      return [
+        ...action.lastRoutes
+        ];
+    default:
+      return state;
+  }
+};

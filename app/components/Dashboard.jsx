@@ -2,6 +2,7 @@ import React from 'react';
 import * as Redux from 'react-redux';
 
 import RouteForm from 'RouteForm';
+import LastRoutesList from 'LastRoutesList';
 
 
 export var Dashboard = React.createClass({
@@ -18,8 +19,10 @@ export var Dashboard = React.createClass({
 						<p className="center">Travel Vienna by Subway the easy way</p>
 						<RouteForm />
 					</section>
-					<section className="col s12 m10 offset-m1 l4 offset-l1">
-						Recent Trips
+					<section className="card-panel col s12 m10 offset-m1 l4 offset-l1">
+						<h2 className="center">Recently requested:</h2>
+        		<p className="center">some subtitle</p>
+        		<LastRoutesList />
 					</section>
 				</div>
 		)

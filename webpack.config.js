@@ -57,7 +57,7 @@ module.exports = {
 
         runtimeCaching: [{
           urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-          handler: 'cacheFirst' /*can be: networkFirst,cacheFirstfastest,cacheOnly,networkOnly*/
+          handler: 'cacheFirst' /*can be: networkFirst,cacheFirst,fastest,cacheOnly,networkOnly*/
         }, {
           urlPattern: /^https:\/\/ipinfo\.io/,
           handler: 'networkFirst'
@@ -67,16 +67,11 @@ module.exports = {
         }, {
           urlPattern: /^https:\/\/loremflickr\.com/,
           handler: 'cacheFirst'
-        }/*, {
-          urlPattern: /\/articles\//,
-          handler: 'fastest',
-          options: {
-              cache: {
-                maxEntries: 10,
-                name: 'articles-cache'
-              }
-          }
-        }*/]
+        }, {
+          //TODO switch NoCORS to https to be cached!!
+          urlPattern: /^http:\/\/nocors\.xtools\.at/,
+          handler: 'cacheFirst'
+        }]
       })
   ],
   output: {

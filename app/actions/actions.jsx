@@ -4,6 +4,7 @@ var {hashHistory} = require('react-router');
 import Helper from 'Helper';
 
 import firebase, {dbRef} from 'app/firebase/';
+import idbRef from 'app/db/idb';
 
 
 //Auth
@@ -288,8 +289,8 @@ export var requestRoute = (from, to, date, time, arrOrDep) => {
 		//excluding everything but subway (would be ID 2)
 		url += "&excludedMeans=0&excludedMeans=1&excludedMeans=3&excludedMeans=4&excludedMeans=5&excludedMeans=6&excludedMeans=7&excludedMeans=8&excludedMeans=9&excludedMeans=10&excludedMeans=11";
 		
-		var base64Url = btoa(url);
-		var apiUrl = "http://nocors.xtools.at/get.php?url="+base64Url;
+		//var base64Url = btoa(url);
+		var apiUrl = "http://nocors.xtools.at/api?url="+encodeURIComponent(url);
 
 		console.log('apiUrls',url,apiUrl);
 
@@ -374,6 +375,61 @@ export var requestRoute = (from, to, date, time, arrOrDep) => {
 					console.log(e);
 				}
 			}
+		});
+	}
+}
+
+//Get recent Routes
+export var getLastRoutes = () => {
+	return (dispatch) => {
+		return idbRef.get('lastRoutes').then((lastRoutes) => {
+			dispatch(dispatchLastRoutes(lastRoutes));
+		});
+	}
+}
+var dispatchLastRoutes = (array) => {
+	if (typeof array == 'undefined' || array.length <= 0){
+		return {
+			type: 'GET_LAST_ROUTES',
+			lastRoutes: []
+		};
+	}
+	return {
+		type: 'GET_LAST_ROUTES',
+		lastRoutes: array
+	};
+}
+
+
+//Set recent Route
+export var setLastRoute = (routeObj) => {
+	return (dispatch) => {
+		return idbRef.get('lastRoutes').then((storedRoutes) => {
+
+			if (typeof storedRoutes == 'undefined' || storedRoutes.length <= 0){
+				storedRoutes = [
+					routeObj
+				];
+			} else {
+				//there are objects stored!
+
+				if (storedRoutes.length > 9){
+					//we want 10 entries max
+					storedRoutes.pop();
+				}
+				//insert new route on top of array
+				storedRoutes.splice(0, 0, routeObj);
+			}
+
+			//console.log('routeArray: ',storedRoutes);
+			
+			//store it
+			idbRef.set('lastRoutes', storedRoutes);
+			
+			//refresh view
+			getLastRoutes();
+
+			return;
 		});
 	}
 }
