@@ -290,7 +290,7 @@ export var requestRoute = (from, to, date, time, arrOrDep) => {
 		url += "&excludedMeans=0&excludedMeans=1&excludedMeans=3&excludedMeans=4&excludedMeans=5&excludedMeans=6&excludedMeans=7&excludedMeans=8&excludedMeans=9&excludedMeans=10&excludedMeans=11";
 		
 		//var base64Url = btoa(url);
-		var apiUrl = "http://nocors.xtools.at/api?url="+encodeURIComponent(url);
+		var apiUrl = "https://uncors.herokuapp.com/api?url="+encodeURIComponent(url);
 
 		console.log('apiUrls',url,apiUrl);
 

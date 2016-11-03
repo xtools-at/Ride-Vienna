@@ -41,10 +41,11 @@ module.exports = {
       }
     }),
     new SWPrecacheWebpackPlugin(
+      //everything Offline First here!
       {
         cacheId: 'App',
         filename: './public/service-worker.js',
-        maximumFileSizeToCacheInBytes: 8388608,
+        maximumFileSizeToCacheInBytes: 8388608, //for Dev
         staticFileGlobs: [
           'public/**.{html, js, json, xml, ico}',
           'public/images/**.*',
@@ -69,7 +70,7 @@ module.exports = {
           handler: 'cacheFirst'
         }, {
           //TODO switch NoCORS to https to be cached!!
-          urlPattern: /^http:\/\/nocors\.xtools\.at/,
+          urlPattern: /^https:\/\/uncors\.herokuapp\.com/,
           handler: 'cacheFirst'
         }]
       })
