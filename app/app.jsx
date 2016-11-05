@@ -8,20 +8,6 @@ import router from 'app/router/';
 var actions = require('actions');
 var store = require('configureStore').configure();
 
-import firebase from 'app/firebase/';
-
-firebase.auth().onAuthStateChanged((user) => {
-  hashHistory.push('/');
-  if (user) {
-    store.dispatch(actions.login(user.uid));
-    //console.log('onAuthStateChanged, dispatched user.uid', user);
-  } else {
-    store.dispatch(actions.logout());
-    //console.log('onAuthStateChanged','no user, fired logout');
-  }
-});
-
-
 // App css
 require('style!css!sass!applicationStyles')
 

@@ -433,3 +433,70 @@ export var setLastRoute = (routeObj) => {
 		});
 	}
 }
+
+//Fetch Stations
+export var getStations = () => {
+	return (dispatch) => {
+		return axios.get('/data/stations.json').then((res) => {
+			if (res.data) {
+				dispatch(dispatchGetStations(res.data));
+			}
+		});
+	}
+}
+
+var dispatchGetStations = (array) => {
+	if (typeof array == 'undefined' || array.length <= 0){
+		return {
+			type: 'GET_STATIONS',
+			stations: []
+		};
+	}
+	return {
+		type: 'GET_STATIONS',
+		stations: array
+	};
+}
+
+
+//Fetch Lines
+export var getLines = () => {
+	return (dispatch) => {
+		return axios.get('/data/lines.json').then((res) => {
+			if (res.data) {
+				dispatch(dispatchGetLines(res.data));
+			}
+		});
+	}
+}
+
+var dispatchGetLines = (obj) => {
+	if (typeof obj == 'undefined'){
+		return {
+			type: 'GET_LINES',
+			lines: {}
+		};
+	}
+	return {
+		type: 'GET_LINES',
+		lines: obj
+	};
+}
+
+//Set active Station for offline View
+export var setActiveStation = (stationId, allStationsArray) => {
+	var activeStation = {};
+
+	allStationsArray.map((station, index) => {
+		if (station.id == stationId) {
+			//found it!
+			activeStation = station;
+		}
+    });
+	hashHistory.push('/station');
+    return {
+		type: 'SET_SELECTED_STATION',
+		activeStation
+	};
+
+}

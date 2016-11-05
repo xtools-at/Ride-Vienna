@@ -7,6 +7,7 @@ import Main from 'Main';
 import Login from 'Login';
 import Dashboard from 'Dashboard';
 import TripsList from 'TripsList';
+import StationInformation from 'StationInformation';
 
 
 var requireLogin = (nextState, replace, next) => {
@@ -30,6 +31,7 @@ export default (
     <Route path="/" component={Main}>
       <IndexRoute component={Dashboard}/>
       <Route path="trips" component={TripsList} />
+      <Route path="station" component={StationInformation} />
       <Route path="register" component={Login} />
     </Route>
   </Router>

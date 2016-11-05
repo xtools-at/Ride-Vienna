@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import * as actions from 'actions';
 
+import StationsDataList from 'StationsDataList';
+
 
 export var RouteForm = React.createClass({
 
@@ -11,12 +13,13 @@ export var RouteForm = React.createClass({
 		ev.preventDefault();
 		var {dispatch} = this.props;
 
-		var from, to, fromID, toID, /*date, */time, dateConv, dateTime, mode;
+		//TODO validate form
+
+		var from, to, fromID, toID, time, dateConv, dateTime, mode;
 		from = this.refs.station_from.value;
 		to = this.refs.station_to.value;
 		fromID = $('#stations_list [value="' + this.refs.station_from.value + '"]').data('value');
 		toID = $('#stations_list [value="' + this.refs.station_to.value + '"]').data('value');
-		//date = moment(this.refs.station_datetime.value).format('DD.MM.');
 		dateTime = this.refs.station_datetime.value;
 		dateConv = moment(this.refs.station_datetime.value).format('YYYYMMDD');
 		time = moment(this.refs.station_datetime.value).format('hh:mm');
@@ -30,6 +33,15 @@ export var RouteForm = React.createClass({
 
 	onOfflineSubmit(ev) {
 		ev.preventDefault();
+		//TODO validate form
+
+		var from, fromID;
+		from = this.refs.station_from.value;
+		fromID = $('#stations_list [value="' + this.refs.station_from.value + '"]').data('value');
+
+		var {dispatch} = this.props;
+		dispatch(actions.setActiveStation(fromID, this.props.storage.stations));
+
 		console.log('onOfflineSubmit');
 	},
 
@@ -43,11 +55,11 @@ export var RouteForm = React.createClass({
 		//TODO: defaultValues are not shown
 		//console.log('route 4 form: ', route);
 		
-		function renderForm() {
-			var output = ''
+		function renderForm(that) {
+			var output = '';
 			if (navigator.onLine) {    // do things that need connection
 				output = (
-					<form autoComplete="on" className="row">
+					<div>
 						<div className="input-field col s12 m8 offset-m2 l8 offset-l2">
 						  <input type="text" 
 							list="stations_list" 
@@ -104,24 +116,18 @@ export var RouteForm = React.createClass({
 					  <div className="clearfix"></div>
 					  
 						<div className="row center">
-							<button className="waves-effect btn btn-large" onClick={this.onRouteSubmit}>
+							<button className="waves-effect btn btn-large" onClick={that.onRouteSubmit}>
 								<i className="material-icons left">subway</i>Get me there!
 							</button>
 						</div>
-						<datalist id="stations_list">
-							<option data-value="60201040" value="Praterstern" />
-							<option data-value="60201235" value="Siebenhirten" />
-							<option data-value="60201349" value="Hauptbahnhof" />
-							<option data-value="60200560" value="Hütteldorf" />
-							<option data-value="60201468" value="Westbahnhof" />
-						</datalist>
-					</form>
+						<StationsDataList id="stations_list" />
+					</div>
 				);
 			
 			} else {
 
 				output = (
-					<form autoComplete="on" className="row">
+					<div>
 						<div className="input-field col s12 m8 offset-m2 l8 offset-l2">
 						  <input type="text" 
 							list="stations_list" 
@@ -141,19 +147,12 @@ export var RouteForm = React.createClass({
 					  
 
 						<div className="row center">
-							<button className="waves-effect btn btn-large" onClick={this.onOfflineSubmit}>
-								<i className="material-icons left">subway</i>Show me Timetables
+							<button className="waves-effect btn btn-large" onClick={that.onOfflineSubmit}>
+								<i className="material-icons left">subway</i>Show Timetables
 							</button>
 						</div>
-
-					  	<datalist id="stations_list">
-							<option data-value="60201040" value="Praterstern" />
-							<option data-value="60201235" value="Siebenhirten" />
-							<option data-value="60201349" value="Hauptbahnhof" />
-							<option data-value="60200560" value="Hütteldorf" />
-							<option data-value="60201468" value="Westbahnhof" />
-						</datalist>
-					</form>
+						<StationsDataList id="stations_list" />
+					</div>
 				);
 			}
 
@@ -161,7 +160,9 @@ export var RouteForm = React.createClass({
 		}
 
 		return (
-			{renderForm()}
+			<form id="route-form" autoComplete="on" className="row">
+			{ renderForm(this) }
+			</form>
 		);
 	}
 });

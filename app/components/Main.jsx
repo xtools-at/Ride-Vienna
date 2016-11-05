@@ -2,7 +2,7 @@ import React from 'react';
 import * as Redux from 'react-redux';
 import axios from 'axios';
 
-import actions from 'actions';
+import * as actions from 'actions';
 
 import Header from 'Header';
 import Footer from 'Footer';
@@ -10,8 +10,15 @@ import Footer from 'Footer';
 export var Main = React.createClass({
 
 	componentDidMount() {
-		//fetch user location
 		var {dispatch} = this.props;
+
+		//load stations/lines data
+		dispatch(actions.getLines());
+		dispatch(actions.getStations());
+
+
+
+		//fetch user location
     	var coords = axios.get('https://ipinfo.io').then((res) => {
     	  //console.log(res.data);
 	      if (res.data.loc){

@@ -48,12 +48,13 @@ module.exports = {
         maximumFileSizeToCacheInBytes: 8388608, //for Dev
         staticFileGlobs: [
           'public/**.{html, js, json, xml, ico}',
-          'public/images/**.*',
-          'public/icons/**.*',
+          'public/images/**.png',
+          'public/icons/**.png',
+          'public/data/**.*',
           'public/bundle.js'
         ],
         stripPrefix: 'public/',
-        verbose: true,
+        verbose: false,
         navigateFallback: 'index.html',
 
         runtimeCaching: [{
@@ -69,8 +70,10 @@ module.exports = {
           urlPattern: /^https:\/\/loremflickr\.com/,
           handler: 'cacheFirst'
         }, {
-          //TODO switch NoCORS to https to be cached!!
           urlPattern: /^https:\/\/uncors\.herokuapp\.com/,
+          handler: 'cacheFirst'
+        }, {
+          urlPattern: /^https:\/\/www\.gstatic\.com/,
           handler: 'cacheFirst'
         }]
       })

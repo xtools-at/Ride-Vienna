@@ -1,12 +1,11 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import { tripsReducer, lastRoutesReducer, storageReducer, filtersReducer } from 'reducers'
+import { tripsReducer, lastRoutesReducer, storageReducer } from 'reducers'
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     storage: storageReducer,
-    filter: filtersReducer,
     trips: tripsReducer,
     lastRoutes: lastRoutesReducer
   });
