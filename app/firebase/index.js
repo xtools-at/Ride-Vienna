@@ -13,7 +13,7 @@ try {
 	console.log('Firebase setup failed');
 }
 
-export var githubProvider = new firebase.auth.GithubAuthProvider();
-export var googleProvider = new firebase.auth.GoogleAuthProvider();
+//export var githubProvider = new firebase.auth.GithubAuthProvider();
+//export var googleProvider = new firebase.auth.GoogleAuthProvider();
 export var dbRef = firebase.database().ref();
 export default firebase;

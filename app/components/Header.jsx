@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Redux from 'react-redux';
-import firebase from 'app/firebase/';
+//import firebase from 'app/firebase/';
 import sideNav from 'materialize-css/dist/js/materialize.min';
 
 import * as actions from 'actions';
@@ -10,13 +10,6 @@ export var Header = React.createClass({
       //init sideNav
     	$(".button-collapse").sideNav();
 	},
-
-	onLogout(ev){
-		ev.preventDefault();
-		this.hideNav();
-	    var {dispatch} = this.props;
-	    dispatch(actions.startLogout());
-  	},
 
   	hideNav(){
   		$(".button-collapse").sideNav('hide');
