@@ -8,7 +8,7 @@ export var Footer = React.createClass({
             <footer className="page-footer">
             	<div className="container">
             		<div className="row center white-text">
-            		This App uses Data by <a href="http://www.wienerlinien.at/" rel="nofollow" className="white-text" target="_blank">Wiener Linien GmbH & Co KG</a> / <a href="https://creativecommons.org/licenses/by/3.0/" rel="nofollow" className="white-text" target="_blank">CC BY 3.0</a>
+            		This App uses Data by <a href="https://www.wienerlinien.at/" rel="nofollow" className="white-text" target="_blank">Wiener Linien GmbH & Co KG</a> / <a href="https://creativecommons.org/licenses/by/3.0/" rel="nofollow" className="white-text" target="_blank">CC BY 3.0</a>
             		</div>
             	</div>
 	          <div className="footer-copyright">
